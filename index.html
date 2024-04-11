@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="./src/App.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            margin: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        #result {
+            font-size: 18px;
+            color: #4caf50;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Currency Converter</h2>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <label for="fromCurrency">From Currency:</label>
+    <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="AUD">AUD</option>
+        <option value="CAD">CAD</option>
+        <option value="CHF">CHF</option>
+        <option value="CNY">CNY</option>
+        <option value="INR">INR</option>
+        <option value="MXN">MXN</option>
+    </select>
+
+    <label for="toCurrency">To Currency:</label>
+    <select id="toCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="AUD">AUD</option>
+        <option value="CAD">CAD</option>
+        <option value="CHF">CHF</option>
+        <option value="CNY">CNY</option>
+        <option value="INR">INR</option>
+        <option value="MXN">MXN</option>
+    </select>
+
+    <button onclick="convertCurrency()">Convert</button>
+
+    <h3>Result:</h3>
+    <p id="result"></p>
+
+    <script>
+        function convertCurrency() {
+            const amount = document.getElementById("amount").value;
+            const fromCurrency = document.getElementById("fromCurrency").value;
+            const toCurrency = document.getElementById("toCurrency").value;
+
+            // Static exchange rates (for simplicity)
+            const exchangeRates = {
+                USD: 1,
+                EUR: 0.85,
+                GBP: 0.73,
+                JPY: 110.15,
+                AUD: 1.33,
+                CAD: 1.24,
+                CHF: 0.91,
+                CNY: 6.42,
+                INR: 83.39,
+                MXN: 20.05
+            };
+
+            const result = (amount * exchangeRates[toCurrency]) / exchangeRates[fromCurrency];
+
+            document.getElementById("result").innerHTML = `${amount} ${fromCurrency} is <strong>${result.toFixed(2)} ${toCurrency}</strong>`;
+        }
+    </script>
+
+</body>
+</html>
